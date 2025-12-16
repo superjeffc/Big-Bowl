@@ -2,7 +2,8 @@
   "expo": {
     "name": "BigBowl",
     "slug": "BigBowl",
-    "version": "1.0.0",
+    "homepage": "https://superjeffreyc.github.io/Big-Bowl",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "bigbowl",
@@ -42,7 +43,8 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": true,
+      "baseUrl": "/Big-Bowl/"
     }
   }
 }
