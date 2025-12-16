@@ -44,6 +44,14 @@ export default function AboutScreen() {
         </TouchableOpacity>
       </View>
 
+      {/* Privacy Policy Info */}
+      <View style={styles.card}>
+        <Text style={styles.label}>Privacy Policy</Text>
+        <Text style={styles.description}>
+          We do not collect any data!
+        </Text>
+      </View>
+
       {/* Donation Section */}
       {Platform.OS === 'web' && (
         <View style={styles.card}>
