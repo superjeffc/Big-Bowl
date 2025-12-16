@@ -20,7 +20,8 @@
         "monochromeImage": "./assets/images/bigbowl.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.jeffreychan.bigbowl"
     },
     "web": {
       "bunder": "metro",
@@ -47,6 +48,12 @@
       "typedRoutes": true,
       "reactCompiler": true,
       "baseUrl": "/Big-Bowl/"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f76cda09-1226-4c3d-88fc-b4725c9e8e6e"
+      }
     }
   }
 }
