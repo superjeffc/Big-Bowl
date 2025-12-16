@@ -5,7 +5,7 @@
     "homepage": "https://superjeffreyc.github.io/Big-Bowl",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/bigbowl.png",
     "scheme": "bigbowl",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -15,23 +15,25 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/bigbowl.png",
+        "backgroundImage": "./assets/images/bigbowl.png",
+        "monochromeImage": "./assets/images/bigbowl.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
+      "bunder": "metro",
+      "publicPath": "/Big-Bowl/",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/bigbowl.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/bigbowl.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
