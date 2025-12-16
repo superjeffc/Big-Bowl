@@ -48,7 +48,7 @@ export default function AboutScreen() {
       <View style={styles.card}>
         <Text style={styles.label}>Privacy Policy</Text>
         <Text style={styles.description}>
-          We do not collect any data!
+          I do not collect any data!
         </Text>
       </View>
 
