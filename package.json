@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "scripts": {
     "start": "expo start",
-    "predeploy": "npx expo export -p web && touch dist/.nojekyll && echo \"!**/node_modules\" > dist/.gitignore",
+    "predeploy": "npx expo export -p web  && echo 'bigbowl.superjeffc.com' > dist/CNAME && touch dist/.nojekyll && echo \"!**/node_modules\" > dist/.gitignore",
     "deploy": "npx gh-pages -d dist  --src \"**/*\" --dotfiles",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
