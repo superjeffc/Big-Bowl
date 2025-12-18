@@ -13,16 +13,14 @@ import {
 export default function AboutScreen() {
 
   const openPayPalLink = () => {
-    // REPLACE THIS LINK with your actual PayPal, BuyMeACoffee, or Venmo link
-    Linking.openURL('https://paypal.me/SuperJeffreyChan');
+    Linking.openURL('https://paypal.me/superjeffc');
   };
   const openVenmoLink = () => {
-    // REPLACE THIS LINK with your actual PayPal, BuyMeACoffee, or Venmo link
-    Linking.openURL('https://venmo.com/superjeffreyc/');
+    Linking.openURL('https://venmo.com/superjeffc');
   };
 
   const openPortfolio = () => {
-    Linking.openURL('https://superjeffreyc.github.io/');
+    Linking.openURL('https://superjeffc.com');
   };
 
   return (
