@@ -30,6 +30,7 @@
     },
     "web": {
       "output": "static",
+      "baseUrl": "/",
       "favicon": "./assets/images/bigbowl.png"
     },
     "plugins": [
