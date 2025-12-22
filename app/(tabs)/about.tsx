@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 import React from 'react';
 import {
   Linking,
@@ -11,6 +12,9 @@ import {
 } from 'react-native';
 
 export default function AboutScreen() {
+  const [loaded] = useFonts({
+    Ionicons: require('../../assets/fonts/Ionicons.ttf'),
+  });
 
   const openPayPalLink = () => {
     Linking.openURL('https://paypal.me/superjeffc');
@@ -22,6 +26,10 @@ export default function AboutScreen() {
   const openPortfolio = () => {
     Linking.openURL('https://superjeffc.com');
   };
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
