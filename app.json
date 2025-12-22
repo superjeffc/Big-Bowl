@@ -29,8 +29,6 @@
       "package": "com.jeffreychan.bigbowl"
     },
     "web": {
-      "bunder": "metro",
-      "publicPath": "/",
       "output": "static",
       "favicon": "./assets/images/bigbowl.png"
     },
