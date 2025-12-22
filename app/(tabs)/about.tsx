@@ -14,6 +14,7 @@ import {
 export default function AboutScreen() {
   const [loaded] = useFonts({
     Ionicons: require('../../assets/fonts/Ionicons.ttf'),
+    'Material Icons': require('../../assets/fonts/MaterialIcons.ttf'),
   });
 
   const openPayPalLink = () => {
