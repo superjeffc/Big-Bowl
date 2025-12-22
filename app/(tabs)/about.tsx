@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
 import React from 'react';
 import {
   Linking,
@@ -12,11 +10,6 @@ import {
 } from 'react-native';
 
 export default function AboutScreen() {
-  const [loaded] = useFonts({
-    Ionicons: require('../../assets/fonts/Ionicons.ttf'),
-    'Material Icons': require('../../assets/fonts/MaterialIcons.ttf'),
-  });
-
   const openPayPalLink = () => {
     Linking.openURL('https://paypal.me/superjeffc');
   };
@@ -27,10 +20,6 @@ export default function AboutScreen() {
   const openPortfolio = () => {
     Linking.openURL('https://superjeffc.com');
   };
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -46,7 +35,6 @@ export default function AboutScreen() {
         <Text style={styles.label}>Created by</Text>
         <Text style={styles.developerName}>Jeff Chan</Text>
         <TouchableOpacity style={styles.profileButton} onPress={openPortfolio}>
-          <Ionicons name="link" size={24} color="white" style={{ marginRight: 10 }} />
           <Text style={styles.donateText}>Visit my Website</Text>
         </TouchableOpacity>
       </View>
@@ -68,11 +56,9 @@ export default function AboutScreen() {
           </Text>
 
           <TouchableOpacity style={styles.donateButton} onPress={openPayPalLink}>
-            <Ionicons name="heart" size={24} color="white" style={{ marginRight: 10 }} />
             <Text style={styles.donateText}>Paypal</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.donateButton} onPress={openVenmoLink}>
-            <Ionicons name="heart" size={24} color="white" style={{ marginRight: 10 }} />
             <Text style={styles.donateText}>Venmo</Text>
           </TouchableOpacity>
         </View>
