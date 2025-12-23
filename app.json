@@ -31,7 +31,8 @@
     "web": {
       "output": "static",
       "baseUrl": "/",
-      "favicon": "./assets/images/bigbowl.png"
+      "favicon": "./assets/images/bigbowl.png",
+      "name": "Big Bowl | Word Party Game"
     },
     "plugins": [
       "expo-router",
