@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   Alert,
   Platform,
   ScrollView,
@@ -38,6 +39,7 @@ export default function App() {
   const [words, setWords] = useState([]);
   const [activeWords, setActiveWords] = useState([]); // Words currently in play for the round
   const [inputValue, setInputValue] = useState("");
+  const [appIsReady, setAppIsReady] = useState(false);
 
   // Game State
   const [team1Score, setTeam1Score] = useState(0);
@@ -150,6 +152,24 @@ export default function App() {
     }
     return () => clearInterval(timerRef.current);
   }, [isTimerRunning, timeLeft]);
+
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      document.title = "Big Bowl | Word Party Game";
+    }
+  }, []);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Simulating a tiny delay for the dictionary setup
+        setAppIsReady(true);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+    prepare();
+  }, []);
 
   // --- RENDERERS ---
 
@@ -328,6 +348,15 @@ export default function App() {
     }
   };
 
+  if (!appIsReady) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#3b82f6" />
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -494,5 +523,19 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 15,
+    fontSize: 16,
+    color: '#3b82f6',
+    fontWeight: '600',
+    fontStyle: 'italic',
   },
 });
