@@ -230,11 +230,9 @@ export default function App() {
 
       <View style={styles.divider} />
 
-      {words.length >= 5 && (
       <TouchableOpacity style={[styles.btnPrimary, {backgroundColor: '#4ade80'}]} onPress={startGame}>
         <Text style={styles.btnText}>Start Game</Text>
       </TouchableOpacity>
-      )}
       <TouchableOpacity style={[styles.btnSecondary, {backgroundColor: '#f87171'}]} onPress={handleBack}>
         <Text style={styles.btnText}>Back</Text>
       </TouchableOpacity>
