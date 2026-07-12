@@ -188,10 +188,10 @@ export default function App() {
       <Text style={styles.header}>How to Play</Text>
       <Text style={styles.rulesText}>
         1. Press New Game.{'\n\n'}
-        2. Everyone adds difficult words to the "Big Bowl" (recommended at least 5 words per person). Then, press Start Game.{'\n\n'}
+        2. Everyone adds difficult words to the &quot;Big Bowl&quot; (recommended at least 5 words per person). Then, press Start Game.{'\n\n'}
         3. Divide into two teams and decide which team will start. Then, press Begin.{'\n\n'}
         4. Play 3 rounds: {'\n\n'}
-          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don't say the word itself.{'\n\n'}
+          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don&apos;t say the word itself.{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 2 (Charades):</Text> Act it out. No talking!{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 3 (Password):</Text> One word clue only.{'\n\n'}
         5. Pass the device to the other team when the timer runs out.{'\n\n'}
@@ -251,7 +251,7 @@ export default function App() {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Team {currentTeam}'s Turn</Text>
+        <Text style={styles.cardTitle}>Team {currentTeam}&apos;s Turn</Text>
         <Text style={styles.cardSub}>Words remaining: {activeWords.length}</Text>
       </View>
 
@@ -286,7 +286,7 @@ export default function App() {
 
   const renderTimesUp = () => (
     <View style={[styles.centerContainer, {backgroundColor: '#ef4444'}]}>
-      <Text style={[styles.header, {color: 'white', fontSize: 50}]}>Time's Up!</Text>
+      <Text style={[styles.header, {color: 'white', fontSize: 50}]}>Time&apos;s Up!</Text>
       <TouchableOpacity style={styles.btnSecondary} onPress={handleSkipOrTimeUp}>
         <Text style={styles.btnText}>Pass Device to Next Team</Text>
       </TouchableOpacity>
