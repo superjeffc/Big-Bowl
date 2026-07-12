@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react-native';
-import App from './index';
+import App from '../app/(tabs)/index';
 import { Vibration } from 'react-native';
 
 jest.mock('react-native', () => {
