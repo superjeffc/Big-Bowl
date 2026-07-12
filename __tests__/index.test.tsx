@@ -11,7 +11,9 @@ jest.mock('react-native', () => {
 
 describe('App - Timer expiration', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers({
+      doNotFake: ['nextTick', 'setImmediate', 'clearImmediate']
+    });
   });
 
   afterEach(() => {
