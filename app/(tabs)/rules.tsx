@@ -14,7 +14,7 @@ export default function RulesTab() {
         2. Everyone adds words to the Word Bank (recommended at least 5 words per person). Then, press Start Game.{'\n\n'}
         3. Divide into two teams and decide which team will start. Then, press Begin.{'\n\n'}
         4. Play 3 rounds: {'\n\n'}
-          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don't say the word itself.{'\n\n'}
+          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don&apos;t say the word itself.{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 2 (Charades):</Text> Act it out. No talking!{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 3 (Password):</Text> One word clue only.{'\n\n'}
         5. Pass the device to the other team when the timer runs out.{'\n\n'}
