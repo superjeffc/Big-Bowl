@@ -23,7 +23,7 @@ const TIME_LIMIT = 60;
 
 // --- HELPER FUNCTIONS ---
 // Fisher-Yates Shuffle
-const shuffle = (array) => {
+const shuffle = (array: string[]) => {
   let currentIndex = array.length, randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -36,8 +36,8 @@ const shuffle = (array) => {
 export default function App() {
   // --- STATE MANAGEMENT ---
   const [screen, setScreen] = useState('HOME'); // HOME, HOW_TO, LOBBY, TURN_START, GAMEPLAY, TIMES_UP, ROUND_OVER, GAME_OVER
-  const [words, setWords] = useState([]);
-  const [activeWords, setActiveWords] = useState([]); // Words currently in play for the round
+  const [words, setWords] = useState<string[]>([]);
+  const [activeWords, setActiveWords] = useState<string[]>([]); // Words currently in play for the round
   const [inputValue, setInputValue] = useState("");
   const [appIsReady, setAppIsReady] = useState(false);
 
@@ -53,7 +53,7 @@ export default function App() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   // Refs for timer management
-  const timerRef = useRef(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // --- LOGIC: NAVIGATION & FLOW ---
 
@@ -100,7 +100,7 @@ export default function App() {
 
     // 3. Check if Round Complete
     if (newActiveWords.length === 0) {
-      clearInterval(timerRef.current);
+      if (timerRef.current) clearInterval(timerRef.current);
       setIsTimerRunning(false);
       setScreen('ROUND_OVER');
     } else {
@@ -112,7 +112,7 @@ export default function App() {
   const handleSkipOrTimeUp = () => {
     // If timer runs out, the current word is NOT removed.
     // It gets shuffled back into the remaining pool for the next team.
-    clearInterval(timerRef.current);
+    if (timerRef.current) clearInterval(timerRef.current);
     setIsTimerRunning(false);
 
     // Shuffle remaining words so the current one isn't immediately next
@@ -145,12 +145,14 @@ export default function App() {
       }, 1000);
     } else if (timeLeft === 0 && isTimerRunning) {
       // Time is up
-      clearInterval(timerRef.current);
+      if (timerRef.current) clearInterval(timerRef.current);
       setIsTimerRunning(false);
       Vibration.vibrate([0, 500, 200, 500]); // Haptic feedback
       setScreen('TIMES_UP');
     }
-    return () => clearInterval(timerRef.current);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [isTimerRunning, timeLeft]);
 
   useEffect(() => {
