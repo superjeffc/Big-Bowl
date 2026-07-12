@@ -23,7 +23,7 @@ const TIME_LIMIT = 60;
 
 // --- HELPER FUNCTIONS ---
 // Fisher-Yates Shuffle
-const shuffle = (array) => {
+const shuffle = <T,>(array: T[]): T[] => {
   let currentIndex = array.length, randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -36,8 +36,8 @@ const shuffle = (array) => {
 export default function App() {
   // --- STATE MANAGEMENT ---
   const [screen, setScreen] = useState('HOME'); // HOME, HOW_TO, LOBBY, TURN_START, GAMEPLAY, TIMES_UP, ROUND_OVER, GAME_OVER
-  const [words, setWords] = useState([]);
-  const [activeWords, setActiveWords] = useState([]); // Words currently in play for the round
+  const [words, setWords] = useState<string[]>([]);
+  const [activeWords, setActiveWords] = useState<string[]>([]); // Words currently in play for the round
   const [inputValue, setInputValue] = useState("");
   const [appIsReady, setAppIsReady] = useState(false);
 
@@ -53,7 +53,7 @@ export default function App() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   // Refs for timer management
-  const timerRef = useRef(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // --- LOGIC: NAVIGATION & FLOW ---
 
@@ -100,7 +100,7 @@ export default function App() {
 
     // 3. Check if Round Complete
     if (newActiveWords.length === 0) {
-      clearInterval(timerRef.current);
+      if (timerRef.current) clearInterval(timerRef.current);
       setIsTimerRunning(false);
       setScreen('ROUND_OVER');
     } else {
@@ -112,7 +112,7 @@ export default function App() {
   const handleSkipOrTimeUp = () => {
     // If timer runs out, the current word is NOT removed.
     // It gets shuffled back into the remaining pool for the next team.
-    clearInterval(timerRef.current);
+    if (timerRef.current) clearInterval(timerRef.current);
     setIsTimerRunning(false);
 
     // Shuffle remaining words so the current one isn't immediately next
@@ -139,19 +139,29 @@ export default function App() {
 
   // --- EFFECT: TIMER ---
   useEffect(() => {
-    if (isTimerRunning && timeLeft > 0) {
+    if (isTimerRunning) {
       timerRef.current = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
-    } else if (timeLeft === 0 && isTimerRunning) {
+    }
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isTimerRunning]);
+
+  useEffect(() => {
+    if (timeLeft <= 0 && isTimerRunning) {
       // Time is up
-      clearInterval(timerRef.current);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
       setIsTimerRunning(false);
       Vibration.vibrate([0, 500, 200, 500]); // Haptic feedback
       setScreen('TIMES_UP');
     }
-    return () => clearInterval(timerRef.current);
-  }, [isTimerRunning, timeLeft]);
+  }, [timeLeft, isTimerRunning]);
 
   useEffect(() => {
     if (Platform.OS === 'web') {
@@ -188,10 +198,10 @@ export default function App() {
       <Text style={styles.header}>How to Play</Text>
       <Text style={styles.rulesText}>
         1. Press New Game.{'\n\n'}
-        2. Everyone adds difficult words to the "Big Bowl" (recommended at least 5 words per person). Then, press Start Game.{'\n\n'}
+        2. Everyone adds difficult words to the &quot;Big Bowl&quot; (recommended at least 5 words per person). Then, press Start Game.{'\n\n'}
         3. Divide into two teams and decide which team will start. Then, press Begin.{'\n\n'}
         4. Play 3 rounds: {'\n\n'}
-          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don't say the word itself.{'\n\n'}
+          {'\t'} <Text style={{fontWeight:'bold'}}>Round 1 (Taboo):</Text> Describe the word using sentences, but don&apos;t say the word itself.{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 2 (Charades):</Text> Act it out. No talking!{'\n\n'}
           {'\t'} <Text style={{fontWeight:'bold'}}>Round 3 (Password):</Text> One word clue only.{'\n\n'}
         5. Pass the device to the other team when the timer runs out.{'\n\n'}
@@ -253,7 +263,7 @@ export default function App() {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Team {currentTeam}'s Turn</Text>
+        <Text style={styles.cardTitle}>Team {currentTeam}&apos;s Turn</Text>
         <Text style={styles.cardSub}>Words remaining: {activeWords.length}</Text>
       </View>
 
@@ -288,7 +298,7 @@ export default function App() {
 
   const renderTimesUp = () => (
     <View style={[styles.centerContainer, {backgroundColor: '#ef4444'}]}>
-      <Text style={[styles.header, {color: 'white', fontSize: 50}]}>Time's Up!</Text>
+      <Text style={[styles.header, {color: 'white', fontSize: 50}]}>Time&apos;s Up!</Text>
       <TouchableOpacity style={styles.btnSecondary} onPress={handleSkipOrTimeUp}>
         <Text style={styles.btnText}>Pass Device to Next Team</Text>
       </TouchableOpacity>
